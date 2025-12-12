@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Name – Protein Modeling & Dynamics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+          background: url("assets/Cover_BD_phd.jpg") no-repeat center center fixed;
+          background-size: cover;
+      }
+    :root {
+      --bg-color: #050816;
+      --accent: #7dd3fc;
+      --accent-soft: rgba(125, 211, 252, 0.15);
+      --text-color: #e5e7eb;
+      --muted-text: #9ca3af;
+      --card-bg: rgba(15, 23, 42, 0.9);
+      --border-subtle: rgba(148, 163, 184, 0.2);
+      --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.6);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #0f172a, #020617);
+      color: var(--text-color);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    .background-animation {
+      position: fixed;
+      inset: -20%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(96, 165, 250, 0.18), transparent 60%),
+        radial-gradient(circle at 80% 30%, rgba(34, 211, 238, 0.16), transparent 55%),
+        radial-gradient(circle at 30% 80%, rgba(248, 250, 252, 0.06), transparent 55%);
+      filter: blur(2px);
+      animation: moveGlow 35s ease-in-out infinite alternate;
+    }
+
+    @keyframes moveGlow {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(-3%, 2%, 0) scale(1.05);
+      }
+      100% {
+        transform: translate3d(4%, -3%, 0) scale(1.02);
+      }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.92), transparent);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #e0f2fe, #38bdf8, #0f172a);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+    }
+
+    nav a {
+      color: var(--muted-text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      transition: color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 3rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      padding: 3rem 0 2.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 4vw, 2.6rem);
+      margin: 0 0 0.75rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(to right, #7dd3fc, #c4b5fd);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+      color: var(--muted-text);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--muted-text);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-color);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, border 0.2s;
+    }
+
+    .btn-primary {
+      border-color: rgba(56, 189, 248, 0.7);
+      background: radial-gradient(circle at top left, #38bdf8, #0ea5e9, #0f172a);
+      box-shadow: 0 14px 35px rgba(8, 47, 73, 0.7);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--muted-text);
+    }
+
+    /* Hero visual card */
+    .hero-card {
+      position: relative;
+      border-radius: 1.25rem;
+      padding: 1.1rem 1.1rem 1.2rem;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      right: -20%;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.6), transparent 60%);
+      opacity: 0.3;
+      filter: blur(2px);
+      transform: translate3d(0, 0, 0);
+      animation: floatBlob 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBlob {
+      0% {
+        transform: translate3d(10px, -10px, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(-30px, 30px, 0) scale(1.05);
+      }
+      100% {
+        transform: translate3d(5px, 5px, 0) scale(1.02);
+      }
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-chip {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(96, 165, 250, 0.6);
+      color: #bfdbfe;
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      color: var(--muted-text);
+    }
+
+    .hero-card-main {
+      margin: 0.2rem 0 0.8rem;
+    }
+
+    .hero-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.35rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .metric {
+      padding: 0.35rem 0.4rem;
+      border-radius: 0.75rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--muted-text);
+    }
+
+    .metric-value {
+      font-size: 0.85rem;
+    }
+
+    .metric-value span {
+      color: #a5b4fc;
+    }
+
+    .hero-wave {
+      position: relative;
+      height: 60px;
+      border-radius: 0.85rem;
+      background: radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.5), transparent 55%),
+                  radial-gradient(circle at 90% 100%, rgba(129, 140, 248, 0.4), transparent 55%),
+                  radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-wave-inner {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.7),
+        rgba(148, 163, 184, 0.6),
+        rgba(15, 23, 42, 0.7)
+      );
+      mask-image: radial-gradient(circle at 50% 0, transparent 38%, black 45%),
+                  radial-gradient(circle at 50% 100%, transparent 38%, black 45%);
+      mix-blend-mode: screen;
+      animation: waveScroll 8s linear infinite;
+    }
+
+    @keyframes waveScroll {
+      0% {
+        transform: translateX(-40%);
+      }
+      100% {
+        transform: translateX(40%);
+      }
+    }
+
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      color: var(--muted-text);
+    }
+
+    .hero-card-footer span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 2.2rem;
+    }
+
+    section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+      color: var(--muted-text);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      border-radius: 1rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      padding: 1rem 1.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card + .card {
+      margin-top: 0.9rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--muted-text);
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      color: var(--muted-text);
+      margin-top: 0.4rem;
+      line-height: 1.6;
+    }
+
+    .card-links {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .chip-link {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .chip-link:hover {
+      border-color: rgba(56, 189, 248, 0.8);
+      color: var(--accent);
+    }
+
+    /* Video grid for publication 1 */
+    .video-grid {
+      margin-top: 0.7rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.6rem;
+    }
+
+    .video-grid video {
+      width: 100%;
+      border-radius: 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #020617;
+    }
+
+    /* GitHub projects */
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .project {
+      border-radius: 0.9rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.8rem 0.9rem;
+    }
+
+    .project h3 {
+      font-size: 0.95rem;
+      margin: 0 0 0.25rem;
+    }
+
+    .project p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted-text);
+    }
+
+    .project-links {
+      margin-top: 0.4rem;
+    }
+
+    .small-link {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .small-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Contact */
+    .contact-list {
+      font-size: 0.9rem;
+      color: var(--muted-text);
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .contact-list li + li {
+      margin-top: 0.2rem;
+    }
+
+    .contact-list a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-list a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem 2rem;
+      font-size: 0.75rem;
+      color: var(--muted-text);
+      text-align: right;
+    }
+
+    /* Small tweaks */
+    @media (max-width: 600px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-card {
+        margin-top: 0.4rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="background-animation"></div>
+
+  <header>
+    <div class="nav">
+      <div class="nav-title">
+        <div class="nav-badge"></div>
+        <span>Your Name</span>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#protein-work">Protein Work</a>
+        <a href="#github">GitHub</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="about">
+      <div>
+        <div class="eyebrow">Protein modeling · Dynamics · AI</div>
+        <h1>
+          PhD in <span>[Your Field]</span>, exploring gradations in protein dynamics.
+        </h1>
+        <p class="hero-lead">
+          I study how conformational flexibility shapes protein function, ligand binding,
+          and epitope recognition. I combine molecular modeling, NMR ensembles, MD
+          simulations, and machine learning to connect sequence, structure, and dynamics.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">Protein modeling</span>
+          <span class="tag">NMR ensembles</span>
+          <span class="tag">MD simulations</span>
+          <span class="tag">AlphaFold</span>
+          <span class="tag">Machine learning</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#publications" class="btn btn-primary">
+            View publications
+          </a>
+          <a href="#github" class="btn btn-secondary">
+            GitHub projects
+          </a>
+        </div>
+        <p class="hero-note">
+          Currently seeking postdoctoral opportunities in protein modeling, structural bioinformatics,
+          and AI for proteins.
+        </p>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-header">
+          <span class="hero-chip">Dynamics snapshot</span>
+          <span class="hero-card-title">Representative conformational ensemble</span>
+        </div>
+        <div class="hero-card-main">
+          <div class="hero-metric-grid">
+            <div class="metric">
+              <div class="metric-label">Residues</div>
+              <div class="metric-value"><span>500</span> avg.</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Ensemble states</div>
+              <div class="metric-value"><span>20</span> / protein</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Systems</div>
+              <div class="metric-value"><span>700+</span> analyzed</div>
+            </div>
+          </div>
+          <div class="hero-wave">
+            <div class="hero-wave-inner"></div>
+          </div>
+        </div>
+        <div class="hero-card-footer">
+          <span>• RMSF, S² &amp; PCA-based motions</span>
+          <span>sequence → dynamics → function</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <h2>Publications</h2>
+      <p class="section-intro">
+        A selection of my publications with links to dynamic visualizations and external
+        result pages. Replace the placeholders below with your actual titles, authors,
+        and links.
+      </p>
+
+      <!-- Publication 1 with video slide -->
+      <article class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            1. Title of First Publication
+          </h3>
+          <span class="card-meta">
+            Journal · Year
+          </span>
+        </div>
+        <div class="card-body">
+          <p>
+            Short 2–3 sentence summary of the paper. Focus on the system you studied
+            and how you used conformational ensembles (NMR / MD) to characterize
+            gradations in protein dynamics and their functional consequences.
+          </p>
+          <p>
+            Below, a slide is represented as six small videos capturing different
+            dynamic modes or states.
+          </p>
+
+          <div class="video-grid">
+            <!-- Replace these src paths with your real mp4 files under assets/ -->
+            <video controls loop muted>
+              <source src="assets/pub1_dynamics_1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video controls loop muted>
+              <source src="assets/pub1_dynamics_2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video controls loop muted>
+              <source src="assets/pub1_dynamics_3.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video controls loop muted>
+              <source src="assets/pub1_dynamics_4.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video controls loop muted>
+              <source src="assets/pub1_dynamics_5.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <video controls loop muted>
+              <source src="assets/pub1_dynamics_6.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div class="card-links">
+            <a href="#" class="chip-link">Publisher / PDF</a>
+            <a href="#" class="chip-link">Preprint</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Publication 2 with bio2byte redirect -->
+      <article class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            2. Title of Second Publication
+          </h3>
+          <span class="card-meta">
+            Journal · Year
+          </span>
+        </div>
+        <div class="card-body">
+          <p>
+            Short 2–3 sentence summary of the work. Emphasize how you integrated
+            sequence-level features, structure predictions, or dynamics into a
+            predictive framework whose results are hosted on the bio2byte platform.
+          </p>
+          <div class="card-links">
+            <a href="https://bio2byte.org" class="chip-link" target="_blank" rel="noopener noreferrer">
+              View interactive results on bio2byte
+            </a>
+            <a href="#" class="chip-link">Publisher / PDF</a>
+            <a href="#" class="chip-link">Preprint</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Add more publications as needed -->
+      <article class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            3. Another publication title
+          </h3>
+          <span class="card-meta">
+            Journal · Year
+          </span>
+        </div>
+        <div class="card-body">
+          <p>
+            Brief summary (1–2 lines). Mention the main protein system, modeling
+            approach, and key result.
+          </p>
+          <div class="card-links">
+            <a href="#" class="chip-link">Publisher / PDF</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PROTEIN WORK -->
+    <section id="protein-work">
+      <h2>Protein Work & Research Focus</h2>
+      <p class="section-intro">
+        A snapshot of my main research themes around protein dynamics, modeling,
+        and epitope design.
+      </p>
+
+      <article class="card">
+        <div class="card-header">
+          <h3 class="card-title">Gradations in Protein Dynamics</h3>
+          <span class="card-meta">Thesis & ongoing work</span>
+        </div>
+        <div class="card-body">
+          <p>
+            I analyze large datasets of proteins with paired AlphaFold models and
+            experimental ensembles (NMR / MD) to detect regions with high RMSF,
+            ambiguous secondary structure, and cryptic flexibility. My goal is to
+            understand how these gradations in dynamics relate to function and
+            binding.
+          </p>
+          <p>
+            This includes eigenvector-based analysis (PCA), RMSF/S² calculations,
+            and integration of pLDDT and secondary structure features into
+            predictive models.
+          </p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <h3 class="card-title">Epitope-focused Mini-protein Design</h3>
+          <span class="card-meta">Computational design & ddG analysis</span>
+        </div>
+        <div class="card-body">
+          <p>
+            I use epitope-engineering strategies and molecular modeling tools
+            (Rosetta / PyRosetta) to design mini-proteins that recapitulate key
+            conformational epitopes, including subdominant ones, for therapeutic
+            antibody discovery.
+          </p>
+          <p>
+            This involves scanning mutations, computing ddG values, and exploring
+            how local flexibility and conformational heterogeneity affect binding.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- GITHUB -->
+    <section id="github">
+      <h2>GitHub Projects</h2>
+      <p class="section-intro">
+        A selection of code and tools I maintain. Replace the placeholder links
+        below with your actual repositories.
+      </p>
+
+      <div class="project-list">
+        <div class="project">
+          <h3>protein-ensemble-tools</h3>
+          <p>
+            Scripts and utilities for analyzing protein ensembles (NMR / MD),
+            computing RMSF, S², PCA, and comparing AlphaFold predictions with
+            experimental flexibility profiles.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/YOURUSERNAME/protein-ensemble-tools"
+               class="small-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub →
+            </a>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>flexibility-ml</h3>
+          <p>
+            Prototype deep learning models that take sequence and structural
+            features as input and predict residue-wise flexibility and dynamic
+            states.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/YOURUSERNAME/flexibility-ml"
+               class="small-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub →
+            </a>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>epitope-miniprotein-design</h3>
+          <p>
+            Workflows and example scripts for epitope-focused mini-protein design,
+            including Rosetta / PyRosetta protocols and ddG analysis.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/YOURUSERNAME/epitope-miniprotein-design"
+               class="small-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="section-intro">
+        For postdoctoral opportunities, collaborations, or questions about my
+        protein modeling work, feel free to reach out.
+      </p>
+      <div class="card">
+        <ul class="contact-list">
+          <li>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></li>
+          <li>ORCID: <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" rel="noopener noreferrer">
+            0000-0000-0000-0000</a>
+          </li>
+          <li>GitHub: <a href="https://github.com/YOURUSERNAME" target="_blank" rel="noopener noreferrer">
+            YOURUSERNAME</a>
+          </li>
+          <li>LinkedIn: <a href="https://www.linkedin.com/in/YOURLINK" target="_blank" rel="noopener noreferrer">
+            Your Name</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Your Name · Protein modeling & dynamics
+  </footer>
+
+  <script>
+    // Set year automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
