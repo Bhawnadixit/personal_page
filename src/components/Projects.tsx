@@ -79,10 +79,17 @@ export function Projects() {
     },
     {
       name: "Deep Learning student projects",
-      href: "https://github.com/Bhawnadixit/Deeplearning_assignmentss",
+      href: "https://github.com/Bhawnadixit/Deeplearning_CNN_RNN_projects",
       desc: "Google Colab notebooks from deep learning / AI courses with my introductory experience with TensorFlow and neural networks on practical assignments.",
       stack: ["Python", "TensorFlow", "PyTorch"],
     },
+    {
+      name: "ClinicalTrials.gov ETL Pipeline",
+      href: "https://github.com/Bhawnadixit/ClinicalTrialsgov_ETL_Pipeline",
+      desc: "Python-based ETL pipeline for extracting, cleaning, and structuring clinical trial data from the ClinicalTrials.gov API into analysis-ready formats.",
+      stack: ["Python", "REST API", "ETL", "JSON", "BioBERT"]
+    },
+
   ];
 
   // ✅ Add your private projects here (no links)
