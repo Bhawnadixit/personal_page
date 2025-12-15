@@ -98,21 +98,21 @@ export function Proteins() {
       label: 'Bond vibrations',
       sub: 'fs – ps',
       desc: 'Fast stretching and bending of bonds and angles. These motions are typically averaged out in most experiments, but define the high-frequency limit of protein dynamics.',
-      image: '/assets/bond_stretching.gif',
+      image: `${import.meta.env.BASE_URL}/assets/bond_stretching.gif`,
     },
     {
       time: 5e-11,
       label: 'Side-chain flickers',
       sub: 'ps – ns',
       desc: 'Local χ-angle rotations and backbone wobbles. They modulate local packing and show up in NMR order parameters and short MD trajectories.',
-      image: '/assets/bond_vibrations.gif'
+      image: `${import.meta.env.BASE_URL}/assets/bond_vibrations.gif`
     },
     {
       time: 5e-8,
       label: 'Loop breathing',
       sub: 'ns – μs',
       desc: 'Opening and closing of loops and turns, altering the exposure of binding pockets, glycosylation sites and epitopes.',
-      image: '/assets/dynamics_movie.gif'
+      image: `${import.meta.env.BASE_URL}/assets/dynamics_movie.gif`
     },
     {
       time: 5e-5,
@@ -121,24 +121,24 @@ export function Proteins() {
       desc: 'Helix–coil transitions and β-structure rearrangements. These gradations are central to ambiguous or “fuzzy” protein regions.',
     },
     {
-      time: 5e-3,
-      label: 'Conformational exchange',
-      sub: 'μs – ms',
-      desc: 'Exchange between long-lived conformers. Detected as line broadening and relaxation dispersion in NMR.',
-    },
-    {
       time: 5e-2,
       label: 'Domain motions',
       sub: 'ms – s',
       desc: 'Hinge and shear motions between domains that often control allosteric regulation and long-range communication.',
-      image: '/assets/p_folding.gif',
+      image: `${import.meta.env.BASE_URL}/assets/p_folding.gif`,
+    },
+    {
+      time: 5e-4,
+      label: 'Conformational exchange',
+      sub: 'μs – ms',
+      desc: 'Exchange between long-lived conformers. Detected as line broadening and relaxation dispersion in NMR.',
     },
     {
       time: 3e1,
       label: 'Binding / unbinding',
       sub: 'ms – s',
       desc: 'Association and dissociation of ligands, glycans and partners. Kinetics here link conformational dynamics directly to affinity.',
-      image: '/assets/binding.gif'
+      image: `${import.meta.env.BASE_URL}/assets/binding.gif`
     },
     {
       time: 5e2,
