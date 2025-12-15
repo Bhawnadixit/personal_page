@@ -33,10 +33,23 @@ export function About({ setActiveTab }: AboutProps) {
         I am a PhD graduate from Ghent University and Vrije Universiteit Brussel, Belgium, working at the interface of protein molecular modeling, structural bioinformatics, and biophysical prediction. My research combines molecular dynamics (MD) simulations, NMR ensembles, AlphaFold2 models, and large-scale normal mode analysis (NMA) to investigate how gradations in protein flexibility shape function and influence structural interpretation. 
         In parallel, I have a strong interest in applying artificial intelligence and deep learning methods to protein/drug design.
       </p>
+
+      <h2 className="text-[0.85rem] uppercase tracking-[0.14em] text-slate-500 mb-3">
+        How I Can Help
+        </h2>
+
+      <ul className="list-disc list-inside text-slate-600 text-[0.95rem] leading-[1.7] max-w-4xl mb-8">
+      <li>Make noisy biological data coherent and analysis-ready</li>
+      <li>Support protein and antibody discovery with dynamics-based insight</li>
+      <li>Build reliable, well-documented reproducible computational workflows</li>
+      <li>Bridge biology, modeling, and programming in multidisciplinary teams</li>
+      <li>Apply Agentic AI for automation</li>
+      </ul>
+
       
       <div className="flex flex-wrap gap-2 my-6">
         <span className="text-[0.8rem] rounded-full px-4 py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
-          Gradations in protein dynamics (AF–NMR–NMA)
+          Gradations in protein dynamics (AF-NMR-NMA)
         </span>
         <span className="text-[0.8rem] rounded-full px-4 py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
           α-1 acid glycoprotein (AGP) dynamics in cancer

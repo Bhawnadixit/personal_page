@@ -15,7 +15,7 @@ export function Contact() {
 
       {/* Intro text */}
       <p className="text-[1.05rem] text-slate-200 leading-relaxed mb-8 max-w-2xl">
-        For postdoctoral opportunities, collaborations, or questions about my work,
+        For opportunities, collaborations, or questions about my work,
         feel free to reach out using the form below or via email.
       </p>
 
@@ -137,9 +137,7 @@ export function Contact() {
           <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
             <h4 className="text-white mb-3">Open to Opportunities</h4>
             <p className="text-sm text-white leading-relaxed">
-              I am actively seeking postdoctoral positions and collaborations in
-              computational structural biology, protein dynamics, and AI-driven
-              molecular modeling.
+              I am open to roles and collaborations in protein and drug design, therapeutics, structural bioinformatics, data engineering, and applied AI. While my core expertise is in protein science and molecular modeling, I am also interested in applying AI and data-driven methods across diverse domains where complex, structured data and robust automation are required.
             </p>
           </div>
         </div>
