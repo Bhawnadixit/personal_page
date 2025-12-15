@@ -96,54 +96,54 @@ export function Proteins() {
     {
       time: 5e-14,
       label: 'Bond vibrations',
-      sub: '1 fs – 1 ps',
+      sub: 'fs – ps',
       desc: 'Fast stretching and bending of bonds and angles. These motions are typically averaged out in most experiments, but define the high-frequency limit of protein dynamics.',
-      image: `${import.meta.env.BASE_URL}/assets/bond_stretching.gif`,
+      image: '/assets/bond_stretching.gif',
     },
     {
       time: 5e-11,
       label: 'Side-chain flickers',
-      sub: '1 ps – 1 ns',
+      sub: 'ps – ns',
       desc: 'Local χ-angle rotations and backbone wobbles. They modulate local packing and show up in NMR order parameters and short MD trajectories.',
-      image: `${import.meta.env.BASE_URL}/assets/bond_vibrations.gif`
+      image: '/assets/bond_vibrations.gif'
     },
     {
       time: 5e-8,
       label: 'Loop breathing',
-      sub: '1 ns – 1 μs',
+      sub: 'ns – μs',
       desc: 'Opening and closing of loops and turns, altering the exposure of binding pockets, glycosylation sites and epitopes.',
-      image: `${import.meta.env.BASE_URL}/assets/dynamics_movie.gif`
+      image: '/assets/dynamics_movie.gif'
     },
     {
       time: 5e-5,
       label: 'Secondary-structure shifts',
-      sub: '1 μs – 1 ms',
+      sub: 'μs – ms',
       desc: 'Helix–coil transitions and β-structure rearrangements. These gradations are central to ambiguous or “fuzzy” protein regions.',
+    },
+    {
+      time: 5e-3,
+      label: 'Conformational exchange',
+      sub: 'μs – ms',
+      desc: 'Exchange between long-lived conformers. Detected as line broadening and relaxation dispersion in NMR.',
     },
     {
       time: 5e-2,
       label: 'Domain motions',
-      sub: '1 ms – 1 s',
+      sub: 'ms – s',
       desc: 'Hinge and shear motions between domains that often control allosteric regulation and long-range communication.',
-      image: `${import.meta.env.BASE_URL}/assets/p_folding.gif`,
-    },
-    {
-      time: 5e0,
-      label: 'Conformational exchange',
-      sub: '1 s – 100 s',
-      desc: 'Exchange between long-lived conformers. Detected as line broadening and relaxation dispersion in NMR.',
+      image: '/assets/p_folding.gif',
     },
     {
       time: 3e1,
       label: 'Binding / unbinding',
-      sub: '1 ms – 100 s',
+      sub: 'ms – s',
       desc: 'Association and dissociation of ligands, glycans and partners. Kinetics here link conformational dynamics directly to affinity.',
-      image: `${import.meta.env.BASE_URL}/assets/binding.gif`
+      image: '/assets/binding.gif'
     },
     {
       time: 5e2,
       label: 'Turnover & remodeling',
-      sub: '100 s – 10,000 s',
+      sub: 's – hrs',
       desc: 'Slow processes such as folding after synthesis, degradation, trafficking and large-scale remodeling within cells.',
     },
   ];
